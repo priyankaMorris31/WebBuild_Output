@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a83c6b4decdc2c99a22caca7bd4cab4c4d34a7b90c47d61a052f384322bf5366
-size 1091
+const cacheName = "BattleAway-BattleAway-1.0";
+const contentToCache = [
+    "build/WebBuild_Output2.3.loader.js",
+    "build/WebBuild_Output2.3.framework.js",
+    "build/WebBuild_Output2.3.data",
+    "build/WebBuild_Output2.3.wasm",
+    "templatedata/style.css"
+
+];
+
+self.addEventListener('install', function (e) {
+    console.log('[Service Worker] Install');
+    
+    e.waitUntil((async function () {
+      const cache = await caches.open(cacheName);
+      console.log('[Service Worker] Caching all: app shell and content');
+      await cache.addAll(contentToCache);
+    })());
+});
+
+self.addEventListener('fetch', function (e) {
+    e.respondWith((async function () {
+      let response = await caches.match(e.request);
+      console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+      if (response) { return response; }
+
+      response = await fetch(e.request);
+      const cache = await caches.open(cacheName);
+      console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+      cache.put(e.request, response.clone());
+      return response;
+    })());
+});
