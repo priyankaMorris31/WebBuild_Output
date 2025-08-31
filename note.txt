@@ -1,0 +1,3 @@
+git lfs track "*.data"
+git lfs track "*.wasm"
+git lfs track "*.js"
