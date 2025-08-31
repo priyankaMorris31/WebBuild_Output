@@ -1,10 +1,10 @@
 const cacheName = "BattleAway-BattleAway-1.0";
 const contentToCache = [
-    "build/WebBuild_Output2.3.loader.js",
-    "build/WebBuild_Output2.3.framework.js",
-    "build/WebBuild_Output2.3.data",
-    "build/WebBuild_Output2.3.wasm",
-    "templatedata/style.css"
+    "Build/WebBuild_Output2.3.loader.js",
+    "Build/WebBuild_Output2.3.framework.js",
+    "Build/WebBuild_Output2.3.data",
+    "Build/WebBuild_Output2.3.wasm",
+    "TemplateData/style.css"
 
 ];
 
