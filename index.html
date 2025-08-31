@@ -23,7 +23,6 @@
 
   <script>
     // --- Service Worker (optional) ---
-    // Disable this if you have caching problems
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("ServiceWorker.js")
@@ -56,7 +55,7 @@
       updateBannerVisibility();
     }
 
-    const buildUrl = "build";
+    const buildUrl = "build";  // <-- make sure this matches the actual folder name on Netlify
     const loaderUrl = buildUrl + "/WebBuild_Output2.3.loader.js";
     const config = {
       dataUrl: buildUrl + "/WebBuild_Output2.3.data",
@@ -74,7 +73,7 @@
     const script = document.createElement("script");
     script.src = loaderUrl;
     script.onload = () => {
-      if (typeof createconst UnityInstance !== "undefined") {
+      if (typeof createUnityInstance !== "undefined") {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = (100 * progress) + "%";
         }).then((unityInstance) => {
